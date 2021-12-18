@@ -1,10 +1,24 @@
-const LinkedList = require("./LinkedList");
+import React, { useContext, useState } from "react";
+import { MovieProvider } from "./movie.context.react.js";
+import { MovieContext } from "./movie.context.react.js";
 
-const ll = LinkedList.fromValues(10, 20);
+function App() {
+  //   let cookies = localStorage.setItem("name", "Bob");
+  //   localStorage.removeItem("name");
+  //   console.log(cookies);
 
-ll.insertAtIndex(2, 60);
-ll.insertAtIndex(1, 80);
-ll.print();
+  let cookie = (document.cookie =
+    "name=Kyle; expires=" + new Date(9999, 0, 1).toUTCString());
 
-console.log(ll.getByIndex(0).value);
-console.log(ll);
+  document.cookie =
+    "lastName=Smith; expires=" + new Date(90000, 0, 1).toUTCString();
+
+  console.log(cookie);
+  return (
+    <div>
+      <h3>hi</h3>
+    </div>
+  );
+}
+
+export default App;

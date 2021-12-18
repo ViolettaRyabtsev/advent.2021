@@ -1,78 +1,55 @@
 class LinkedList {
   constructor() {
     this.head = null;
-    this.length = 0;
+    this.tail = null;
   }
 
-  insertHead(data) {
-    let NewNode = new ListNode(data, this.head);
-    this.head = NewNode;
-    this.length++;
-  }
-
-  getByIndex(index) {
-    if (index < 0 || index >= this.length) {
-      return null;
+  push(value) {
+    let newNode = new Node(value);
+    if (!this.head) {
+      this.head = newNode;
+      this.tail = newNode;
+    } else {
+      this.tail.next = newNode;
+      this.tail = newNode;
     }
-
+  }
+  pop() {
+    if (!this.head) return null;
     let current = this.head;
-
-    for (var i = 0; i < index; i++) {
+    let newTail = current;
+    while (current.next) {
       current = current.next;
+      newTail = current;
     }
+    this.tail = newTail;
+    this.tail.next = null;
+    this.length--;
     return current;
   }
 
-  insertAtIndex(index, value) {
-    if (index === 0) return this.insertHead(value);
-    const prev = this.getByIndex(index - 1);
-    if (prev === null) return null;
-    prev.next = new ListNode(value, prev.next);
-    this.length++;
-  }
-
-  removeElement() {
+  shift() {
+    //remove from beginning
+    if (!this.head) return null;
+    let curr = this.head;
     this.head = this.head.next;
-    this.length--;
+    return curr;
   }
 
-  print() {
-    let output = "";
-    let current = this.head;
-    while (current) {
-      output = `${output}${current.value}-->`;
-      current = current.next;
+  unshift(value) {
+    let newNode = new Node(value);
+    if (!this.head) {
+      this.head = newNode;
+      this.tail = this.head;
     }
-    console.log(`${output}`);
-  }
-
-  reverseList(head) {
-    let prev = null;
-    let next = null;
-
-    while (head) {
-      next = head.next;
-      head.next = prev;
-      prev = head;
-      head = next;
-    }
-    return prev;
+    newNode.next = this.head;
+    this.head = newNode;
   }
 }
 
-class ListNode {
-  constructor(value, next) {
+class Node {
+  constructor(value) {
     this.value = value;
-    this.next = next;
+    this.next = null;
   }
 }
-
-LinkedList.fromValues = function (...values) {
-  const ll = new LinkedList();
-  for (let i = values.length; i >= 0; i--) {
-    ll.insertHead(values[i]);
-  }
-  return ll;
-};
-
-module.exports = LinkedList;
