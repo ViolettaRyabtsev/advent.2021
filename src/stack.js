@@ -2,27 +2,31 @@
 
 class Stack {
   constructor() {
-    this.first = null;
+    this.start = null;
     this.last = null;
-    this.length = 0;
   }
   push(value) {
     let newNode = new Node(value);
-    if (!this.first) {
-      this.first = newNode;
+    if (!this.start) {
+      this.start = newNode;
       this.last = newNode;
     } else {
-      let temp = this.first;
-      this.first = newNode;
-      this.first.next = temp;
+      let temp = this.start;
+      this.start = newNode;
+      this.start.next = temp;
     }
+    return this.start++;
   }
 
   pop() {
-    if (!this.first) return null;
-    let temp = this.first;
-    if (this.first === this.last) return (this.last = null);
-    this.first = this.first.next;
+    if (!this.start) {
+      return null;
+    }
+    let temp = this.start;
+    if (this.start === this.last) {
+      this.last = null;
+    }
+    this.start = this.start.next;
     return temp.value;
   }
 }

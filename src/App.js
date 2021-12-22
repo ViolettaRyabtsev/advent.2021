@@ -3,9 +3,9 @@ import { MovieProvider } from "./movie.context.react.js";
 import { MovieContext } from "./movie.context.react.js";
 
 function App() {
-  //   let cookies = localStorage.setItem("name", "Bob");
-  //   localStorage.removeItem("name");
-  //   console.log(cookies);
+     let cookies = localStorage.setItem("name", "Bob");
+     localStorage.removeItem("name");
+    console.log(cookies);
 
   let cookie = (document.cookie =
     "name=Kyle; expires=" + new Date(9999, 0, 1).toUTCString());

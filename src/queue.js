@@ -9,22 +9,26 @@ class Queue {
 
   enqueue(value) {
     let newNode = new Node(value);
-    if (!this.first) {
-      this.first = newNode;
+    if (!this.start) {
+      this.start = newNode;
       this.last = newNode;
     } else {
-      let temp = this.last;
+      this.last = newNode;
       this.last.next = newNode;
-      this.last = temp;
     }
+    return this.length++;
   }
 
   dequeue() {
-    if (!this.first) return null;
-    let temp = this.first;
-    if (this.first === this.last) this.first = null;
-    this.first = this.first.next;
-    return temp.value;
+    if (!this.start) return null;
+
+    let temp = this.start;
+    if (this.start === this.last) {
+      this.last = null;
+    }
+    this.start = this.start.next;
+    this.length--;
+    return temp.val;
   }
 }
 class Node {
