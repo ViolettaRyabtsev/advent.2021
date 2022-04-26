@@ -21,13 +21,12 @@ class Queue {
 
   dequeue() {
     if (!this.start) return null;
-
     let temp = this.start;
     if (this.start === this.last) {
       this.last = null;
     }
     this.start = this.start.next;
-    this.length--;
+    this.length--; 
     return temp.val;
   }
 }
